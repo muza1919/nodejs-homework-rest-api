@@ -1,8 +1,6 @@
 const Jimp = require("jimp");
 
 const imageResizer = async (imageURL) => {
-  console.log("imageURL= ", imageURL);
-
   await Jimp.read(imageURL)
     .then((image) => {
       return image
