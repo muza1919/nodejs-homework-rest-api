@@ -1,16 +1,18 @@
-const mongoose = require('mongoose');
-const app = require('./app');
+const mongoose = require("mongoose");
 
-const {DB_HOST, PORT = 3000} = process.env;
+const app = require("./app");
 
-const dbURI = 'mongodb://127.0.0.1:27017/contacts';
+const { DB_HOST, PORT = 3000 } = process.env;
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.set("strictQuery", true);
+
+mongoose
+  .connect(DB_HOST)
   .then(() => {
     app.listen(PORT);
     console.log("Database connection successful");
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(error.message);
     process.exit(1);
   });
